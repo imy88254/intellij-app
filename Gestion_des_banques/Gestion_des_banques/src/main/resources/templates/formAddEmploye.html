@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Employee</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            width: 400px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 15px 15px 0 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">Add New Employee</div>
+        <div class="card-body">
+            <form method="post" action="/save" style="margin-top: 20px;">
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Name</label>
+                    <input id="nom" type="text" name="nom" class="form-control" th:value="${employe.nom}">
+                </div>
+                <div class="mb-3">
+                    <label for="prenom" class="form-label">Prenom</label>
+                    <input id="prenom" type="text" name="prenom" class="form-control" th:value="${employe.prenom}">
+                </div>
+                <div class="mb-3">
+                    <label for="poste" class="form-label">Poste</label>
+                    <input id="poste" type="text" name="poste" class="form-control" th:value="${employe.poste}">
+                </div>
+                <div class="mb-3">
+                    <label for="salaire" class="form-label">Salaire</label>
+                    <input id="salaire" type="number" name="salaire" class="form-control" th:value="${employe.salaire}">
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

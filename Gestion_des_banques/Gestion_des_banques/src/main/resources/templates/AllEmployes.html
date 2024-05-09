@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Employees</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+</head>
+<body class="container">
+<h1 class="mt-4">Employees</h1>
+
+<form method="get" th:action="@{index}" class="mb-4">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search employee" name="search" th:value="${keyword}" />
+        <button class="btn btn-secondary" type="submit">Search</button>
+    </div>
+    <div class="text-end mt-2">
+        <a class="btn btn-outline-dark" th:href="@{create}">Create Employe</a>
+    </div>
+</form>
+
+<table class="table align-middle table-bordered table-hover">
+    <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Poste</th>
+        <th>Salaire</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${listEmployes}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.nom}"></td>
+        <td th:text="${employee.prenom}"></td>
+        <td th:text="${employee.poste}"></td>
+        <td th:text="${employee.salaire}"></td>
+        <td>
+            <a class="btn btn-danger" th:href="@{delete(page=${currentPage}, size=${size}, search=${searchName}, id=${employee.id})}">Delete</a>
+        </td>
+        <td>
+            <a class="btn btn-primary" th:href="@{edit(page=${currentPage}, size=${size}, search=${searchName}, id=${employee.id})}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="container">
+    <ul class="pagination justify-content-center">
+        <li th:each="page : ${tabPages}" class="page-item">
+            <a class="page-link" th:text="${page + 1}" th:href="@{index(page=${page}, size=${size}, keyword=${searchName})}"></a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
